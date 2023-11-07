@@ -21,6 +21,7 @@ public class FireboltTestProperties
     public static final String JDBC_ENDPOINT = requireSystemProperty("test.firebolt.jdbc.endpoint");
     public static final String JDBC_USER = requireSystemProperty("test.firebolt.jdbc.user");
     public static final String JDBC_PASSWORD = requireSystemProperty("test.firebolt.jdbc.password");
+    public static final String JDBC_DATABASE = requireSystemProperty("test.firebolt.jdbc.database");
 
     private FireboltTestProperties()
     {

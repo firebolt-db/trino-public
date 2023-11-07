@@ -24,6 +24,7 @@ import io.trino.testing.QueryRunner;
 
 import java.util.Map;
 
+import static io.trino.plugin.firebolt.FireboltTestProperties.JDBC_DATABASE;
 import static io.trino.plugin.firebolt.FireboltTestProperties.JDBC_ENDPOINT;
 import static io.trino.plugin.firebolt.FireboltTestProperties.JDBC_PASSWORD;
 import static io.trino.plugin.firebolt.FireboltTestProperties.JDBC_USER;
@@ -36,10 +37,9 @@ public final class FireboltQueryRunner
     private static final String TPCH_SCHEMA = "public";
 
     private static final String CONNECTOR_NAME = "firebolt";
-    private static final String TEST_DATABASE = "trino_test";
     private static final String TEST_CATALOG = "firebolt";
 
-    static final String JDBC_URL = "jdbc:firebolt://" + JDBC_ENDPOINT + "/" + TEST_DATABASE;
+    static final String JDBC_URL = "jdbc:firebolt://" + JDBC_ENDPOINT + "/" + JDBC_DATABASE;
 
     private FireboltQueryRunner() {}
 
@@ -59,7 +59,7 @@ public final class FireboltQueryRunner
                 .buildOrThrow();
         QueryRunner queryRunner = DistributedQueryRunner.builder(createSession())
                 .setExtraProperties(extraProperties)
-                .setNodeCount(1)
+//                .setNodeCount(1) // What is this for?
                 .build();
 
         queryRunner.installPlugin(new FireboltPlugin());
